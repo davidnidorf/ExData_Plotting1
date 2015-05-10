@@ -1,5 +1,5 @@
 # For more information on this function, please read the provided README file.
-create_plot1 <- function() {
+create_plot3 <- function() {
     
     # First, just get the column names from the first row.  Assume the file is in the directory.
     cols<-read.delim("household_power_consumption.txt", sep=";", nrows=1, header=TRUE)

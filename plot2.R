@@ -1,5 +1,5 @@
 # For more information on this function, please read the provided README file.
-create_plot1 <- function() {
+create_plot2 <- function() {
     
     # First, just get the column names from the first row.  Assume the file is in the directory.
     cols<-read.delim("household_power_consumption.txt", sep=";", nrows=1, header=TRUE)
@@ -13,12 +13,15 @@ create_plot1 <- function() {
     names(data)<-names(cols)
     
     # Concatenate the Date and Time columns together and convert them to DateTimes
-    dateTimes<-strptime(paste(data$Date, data$Time), "%d/%m/%y %h:%m:%s")
+    DateTimes<-strptime(paste(data$Date, data$Time), "%d/%m/%Y %H:%M:%S")
     
-    # Draw a histogram of the global active power data
-    hist(data$Global_active_power, col="red", main="Global Active Power", xlab="Global Active Power (kilowatts)", ylab="Frequency")
+    # Add the new dateTimes column to our data set
+    dataWithDateTimes<-cbind(DateTimes,data)
+    
+    # Draw a line plot of the global active power data over time
+    plot(data2$dateTimes, data2$Global_active_power, type="l", ylab="Global Active Power (kilowatts)", xlab="")
     
     # Save the histogram to file
-    dev.copy(png, file="plot1.png")
+    dev.copy(png, file="plot2.png")
     dev.off()
 }
