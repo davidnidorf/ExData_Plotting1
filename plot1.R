@@ -12,10 +12,12 @@ create_plot1 <- function() {
     # Attach the column names to the data set.
     names(data)<-names(cols)
     
+    # Open a bitmap device so we can write the the appropriate file
+    png(filename="plot1.png", width=480, height=480)
+    
     # Draw a histogram of the global active power data
     hist(data$Global_active_power, col="red", main="Global Active Power", xlab="Global Active Power (kilowatts)", ylab="Frequency")
     
     # Save the histogram to file
-    dev.copy(png, file="plot1.png")
     dev.off()
 }

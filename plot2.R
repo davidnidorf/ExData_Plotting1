@@ -18,10 +18,12 @@ create_plot2 <- function() {
     # Add the new dateTimes column to our data set
     dataWithDateTimes<-cbind(DateTimes,data)
     
-    # Draw a line plot of the global active power data over time
-    plot(data2$dateTimes, data2$Global_active_power, type="l", ylab="Global Active Power (kilowatts)", xlab="")
+    # Open a bitmap device so we can write the the appropriate file
+    png(filename="plot2.png", width=480, height=480)
     
-    # Save the histogram to file
-    dev.copy(png, file="plot2.png")
+    # Draw a line plot of the global active power data over time
+    plot(dataWithDateTimes$DateTimes, dataWithDateTimes$Global_active_power, type="l", xlab="", ylab="Global Active Power (kilowatts)")
+    
+    # Save the plot to file
     dev.off()
 }
